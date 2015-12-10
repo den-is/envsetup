@@ -1,0 +1,33 @@
+---
+git: false
+gitname: Xxxxxx Yyyyyyyyyyyy
+gitemail: abc@xyz.example
+tmux: false
+vim_complete: false
+vimplugins:
+  - scrooloose/nerdtree
+  - tpope/vim-fugitive
+  - kien/ctrlp.vim
+  - SirVer/ultisnips
+  - honza/vim-snippets
+  - ervandew/supertab
+  - godlygeek/tabular
+  - bling/vim-airline
+packages:
+  - mlocate
+  - wget
+  - zip
+  - unzip
+  - vim-enhanced
+  - bash-completion
+  - uuid
+  - bind-utils
+  - net-tools
+  - tmux
+  - git
+  - htop
+  - rsync
+  - strace
+  - lsof
+  - mtr
+  - traceroute

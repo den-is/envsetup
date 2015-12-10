@@ -1,0 +1,51 @@
+[user]
+    name = {{ gitname }}
+    email = {{ gitemail }}
+[alias]
+    #############
+    o = checkout
+    om = checkout master
+    ob = checkout -b
+    #############
+    m = merge
+    #############
+    c = commit
+    cm = commit -m
+    cd = commit --amend
+    #############
+    hist = log --graph --pretty=format:\"%C(magenta)%h%Creset %C(dim green)%cd%Creset | %s%C(auto)%d%Creset %C(cyan dim ul)[%ae]%Creset\" --date=short
+    l = log --oneline
+    lg = log --oneline --graph --decorate
+    st = status
+    #############
+    ps = push
+    psf = push -f
+    psu = push -u
+    pso = push origin
+    psao = push --all origin
+    psfo = push -f origin
+    psuo = push -u origin
+    psom = push origin master
+    psfom = push -f origin master
+    psuom = push -u origin master
+    #############
+    pl = pull
+    plo = pull origin
+    plp = pull upstream
+    plom = pull origin master
+    plpm = pull upstream master
+    #############
+    re = reset
+    rh = reset HEAD
+    reh = reset --hard
+    rem = reset --mixed
+    res = reset --soft
+    #############
+    a = add -A
+    br = branch -av
+    tags = tag -l
+    sh = show
+    type = cat-file -t
+    dump = cat-file -p
+[push]
+    default = simple

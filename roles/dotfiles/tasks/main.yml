@@ -1,0 +1,21 @@
+---
+- name: Vimrc
+  template: src=vimrc.j2 dest=~/.vimrc mode=0664
+
+- name: Install Vundle
+  git: repo=https://github.com/VundleVim/Vundle.vim.git
+       dest=~/.vim/bundle/Vundle.vim
+       update=no
+  when: vim_complete
+
+- name: Install Vim plugins
+  command: vim +PluginInstall +qall
+  when: vim_complete
+
+- name: Git config
+  template: src=gitconfig.j2 dest=~/.gitconfig mode=0664
+  when: git
+
+- name: Custom .tmux.conf
+  copy: src=tmuxconf dest=~/.tmux.conf mode=0644
+  when: tmux

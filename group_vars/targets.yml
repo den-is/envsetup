@@ -7,7 +7,7 @@ vim_complete: false
 vimplugins:
   - scrooloose/nerdtree
   - tpope/vim-fugitive
-  - kien/ctrlp.vim
+  - ctrlpvim/ctrlp.vim 
   - SirVer/ultisnips
   - honza/vim-snippets
   - ervandew/supertab

@@ -4,7 +4,7 @@ Currently tested and works only on CentOS 7, using root user.
 
 # Usage
 - Add/edit your host to hosts file or uncomment localhost node.
-- Setup configuration happens via group_vvars/targets.yml
+- Setup configuration happens via group_vars/targets.yml
 - `ansible-playbook -i hosts site.yml`
 
 ##### Packages
@@ -38,7 +38,7 @@ Currently tested and works only on CentOS 7, using root user.
 - .tmux.conf
 
 ##### Vimrc
-If you choose vim_complete option in configuration it will install Vundle, vim plugin manager. And next plugins included in default configuration. Otherwise it will include basic vimrc. Included plugins in case of vim_complete:
+If you choose vim_complete option in configuration it will install Vundle, vim plugin manager. Requires git on system. Otherwise it will include basic vimrc. Included plugins in case of vim_complete:
 - [scrooloose/nerdtree][1]
 - [tpope/vim-fugitive][2]
 - [ctrlpvim/ctrlp.vim][3]

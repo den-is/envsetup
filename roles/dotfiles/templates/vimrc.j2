@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+
 {% for plugin in vimplugins %}
 Plugin '{{ plugin }}'
 {% endfor %}
@@ -16,6 +17,8 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Key mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set pastetoggle=<F2>            " Toggle auto-indenting for code paste
+let mapleader = ","             " Use ',' (comma char) as leader key, instead of default '\'
 {% if vim_complete %}
 map <C-n> :NERDTreeToggle<CR>
 {% endif %}
@@ -30,7 +33,6 @@ set autoread                    " Set to auto read when a file is changed from t
 set wildmode=longest,list
 set wildmenu
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -39,6 +41,10 @@ set shiftwidth=2                " Set the default shift width for indents
 set expandtab                   " Make tabs into spaces (set by tabstop)
 set smarttab                    " Smarter tab levels
 set autoindent                  " Auto indent
+
+" Language specific
+let python_highlight_all = 1
+autocmd Filetype python setlocal ts=4 sw=4 expandtab autoindent
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -83,8 +89,3 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-" Language specific
-let python_highlight_all = 1
-autocmd Filetype python setlocal ts=4 sw=4 expandtab autoindent
-

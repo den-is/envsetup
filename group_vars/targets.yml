@@ -1,9 +1,9 @@
 ---
-git: false
+git: no
 gitname: Xxxxxx Yyyyyyyyyyyy
 gitemail: abc@xyz.example
-tmux: false
-vim_complete: false
+tmux: no
+vim_complete: no
 vimplugins:
   - scrooloose/nerdtree
   - tpope/vim-fugitive

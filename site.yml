@@ -1,6 +1,7 @@
 ---
-- hosts: targets
+- name: Setup default environment on system.
+  hosts: targets
   remote_user: root
   roles:
-    - common
-    - dotfiles
+    - { role: common, tags: 'common' }
+    - { role: dotfiles, tags: 'dotfiles' }

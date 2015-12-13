@@ -5,6 +5,11 @@
     editor = vim
 [push]
     default = simple
+[color]
+    ui = auto
+    status = auto
+    diff = auto
+    branch = auto
 [alias]
     #############
     o = checkout
@@ -17,10 +22,16 @@
     cm = commit -m
     cd = commit --amend
     #############
+    d = diff
+    dc = diff --cached
+    dk = diff --check
+    dck = diff --cached --check
+    #############
     hist = log --graph --pretty=format:\"%C(magenta)%h%Creset %C(dim green)%cd%Creset | %s%C(auto)%d%Creset %C(cyan dim ul)[%ae]%Creset\" --date=short
     l = log --oneline
     lg = log --oneline --graph --decorate
     st = status
+    sb = status -s -b
     #############
     ps = push
     psf = push -f

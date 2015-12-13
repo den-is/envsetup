@@ -1,0 +1,39 @@
+---
+- name: Install ansible helpers
+  yum: name={{item}} state=latest
+  with_items:
+    - libselinux-python
+
+- name: Disable SELinux
+  selinux: state=disabled
+
+- name: Disable Firewall
+  service: name=firewalld state=stopped enabled=no
+
+- name: Install EPEL repository
+  yum: name=epel-release state=latest
+
+- name: Install RepoForge (RpmForge) repository
+  yum: name=http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm state=present
+
+- name: Install Rsyslog 8 repository
+  get_url: url=http://rpms.adiscon.com/v8-stable/rsyslog.repo
+           dest=/etc/yum.repos.d/rsyslog8.repo
+           mode=0644
+
+- name: Install yum helpers
+  yum: name={{item}} state=latest
+  with_items:
+    - deltarpm
+    - yum-cron
+    - yum-utils
+
+- name: Install common packages with YUM
+  yum: name={{item}} state=latest
+  with_items: "{{packages}}"
+
+- name: Install GCC, GCC-C++
+  yum: name={{ item }} state=latest
+  with_items:
+    - gcc
+    - gcc-c++

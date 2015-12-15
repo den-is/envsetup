@@ -6,6 +6,7 @@ Currently tested and works only on CentOS 7, using root user.
 - Add/edit your host to hosts file or uncomment localhost node.
 - Setup configuration happens via group_vars/targets.yml
 - `ansible-playbook -i hosts site.yml`
+- Add `-k` argument to previous command - password for connection will be asked. This is needed in case if you don't have key authentication with dedicated node.
 
 ##### Packages
 - mlocate

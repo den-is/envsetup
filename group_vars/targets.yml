@@ -1,4 +1,5 @@
 ---
+rebootonfinish: yes
 git: no
 gitname: Xxxxxx Yyyyyyyyyyyy
 gitemail: abc@xyz.example
@@ -7,7 +8,7 @@ vim_complete: no
 vimplugins:
   - scrooloose/nerdtree
   - tpope/vim-fugitive
-  - ctrlpvim/ctrlp.vim 
+  - ctrlpvim/ctrlp.vim
   - SirVer/ultisnips
   - honza/vim-snippets
   - ervandew/supertab

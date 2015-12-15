@@ -1,6 +1,6 @@
 ---
 - name: Install ansible helpers
-  yum: name={{item}} state=latest
+  yum: name={{ item }} state=latest
   with_items:
     - libselinux-python
 
@@ -22,18 +22,24 @@
            mode=0644
 
 - name: Install yum helpers
-  yum: name={{item}} state=latest
+  yum: name={{ item }} state=latest
   with_items:
     - deltarpm
     - yum-cron
     - yum-utils
 
 - name: Install common packages with YUM
-  yum: name={{item}} state=latest
-  with_items: "{{packages}}"
+  yum: name={{ item }} state=latest
+  with_items: "{{ packages }}"
 
 - name: Install GCC, GCC-C++
   yum: name={{ item }} state=latest
   with_items:
     - gcc
     - gcc-c++
+
+- name: Update system
+  yum: name=* state=latest
+  notify:
+    - Restart server
+    - Wait for server to restart

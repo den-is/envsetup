@@ -7,6 +7,9 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
+{% if vim_solarized %}
+Plugin 'altercation/vim-colors-solarized'
+{% endif %}
 {% for plugin in vimplugins %}
 Plugin '{{ plugin }}'
 {% endfor %}
@@ -61,6 +64,10 @@ set laststatus=2                " Always show the status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 syntax enable                   " Enable syntax highlighting
+{% if vim_solarized %}
+set background=dark
+colorscheme solarized
+{% endif %}
 {% if vim_complete %}
 let g:airline#extensions#tabline#enabled = 1
 {% endif %}

@@ -5,6 +5,7 @@ gitname: Xxxxxx Yyyyyyyyyyyy
 gitemail: abc@xyz.example
 tmux: no
 vim_complete: no
+vim_solarized: no
 vimplugins:
   - scrooloose/nerdtree
   - tpope/vim-fugitive

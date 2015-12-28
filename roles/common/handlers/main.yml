@@ -15,5 +15,5 @@
     delay=30
     timeout=300
     connect_timeout=15
-  sudo: false
+  become: false
   when: rebootonfinish

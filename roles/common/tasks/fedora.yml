@@ -1,0 +1,61 @@
+---
+- name: Install RPMFusion free
+  dnf:
+    name: http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm
+    state: present
+
+- name: Install RPMFusion nonfree
+  dnf:
+    name: http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm
+    state: present
+
+- name: Install common packages
+  dnf: name={{ item }} state=latest
+  with_items: "{{ packages }}"
+
+- name: Install codecs
+  dnf: name={{ item }} state=latest
+  with_items: "{{ codecs }}"
+
+- name: Get Fedy installer
+  get_url: url=http://folkswithhats.org/fedy-installer dest=/tmp/fedy-installer mode=0550
+
+- name: Install Fedy
+  shell: /tmp/fedy-installer creates=/usr/bin/fedy
+
+- name: Get MS core fonts rpm
+  get_url: url=http://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.2-1.noarch.rpm?r=&ts=1451381290&use_mirror=netassist dest=/tmp/msttcore-fonts-installer-2.2-1.noarch.rpm mode=0440
+
+- name: Install MS Core fonts
+  dnf: name=/tmp/msttcore-fonts-installer-2.2-1.noarch.rpm state=present
+
+- name: Install freetype-freeworld
+  dnf: name=freetype-freeworld state=latest
+
+#- name: Set hinting style to slight, instead of hintmedium
+#  shell: gsettings set org.gnome.settings-daemon.plugins.xsettings hinting slight
+#  become: yes
+#  become_user: "{{ fedora_user }}"
+
+#- name: Set RGB anti-alising in Gnome, instead of grayscale
+#  shell: gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
+#  become: yes
+#  become_user: "{{ fedora_user }}"
+
+- name: Activate the lcddefault lcdfilter for root
+  lineinfile: dest=~/.Xresources line="Xft.lcdfilter{{":"}} lcddefault" state=present create=yes
+
+- name: Activate the lcddefault lcdfilter for fedora_user
+  lineinfile: dest=~/.Xresources line="Xft.lcdfilter{{":"}} lcddefault" state=present create=yes
+  become: yes
+  become_user: "{{ fedora_user }}"
+
+- name: Install Adobe fonts
+  dnf: name={{ item }} state=latest
+  with_items: "{{ fonts }}"
+
+- name: Update system
+  dnf: name=* state=latest
+  notify:
+    - Restart host
+    - Wait for host to restart

@@ -33,3 +33,6 @@ packages:
   - lsof
   - mtr
   - traceroute
+disabledsvcs:
+  - postfix
+  - wpa_supplicant

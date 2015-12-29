@@ -9,6 +9,11 @@
 
 - name: Disable Firewall
   service: name=firewalld state=stopped enabled=no
+  when: ansible_distribution_release != "Core"
+
+- name: Disable unwanted services
+  service: name={{ item }} state=stopped enabled=no
+  with_items: "{{ disabledsvcs }}"
 
 - name: Install EPEL repository
   yum: name=epel-release state=latest
@@ -28,7 +33,7 @@
     - yum-cron
     - yum-utils
 
-- name: Install common packages with YUM
+- name: Install common packages
   yum: name={{ item }} state=latest
   with_items: "{{ packages }}"
 
@@ -41,5 +46,5 @@
 - name: Update system
   yum: name=* state=latest
   notify:
-    - Restart server
-    - Wait for server to restart
+    - Restart host
+    - Wait for host to restart

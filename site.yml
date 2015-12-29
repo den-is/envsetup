@@ -1,7 +1,27 @@
 ---
-- name: Setup default environment on system.
-  hosts: targets
+- name: Setup CentOS hosts
+  hosts: centos
   remote_user: root
   roles:
     - { role: common, tags: 'common' }
     - { role: dotfiles, tags: 'dotfiles' }
+
+- name: Enable Ansible support on Fedora 23+ hosts
+  hosts: fedora
+  gather_facts: false
+  become_user: root
+  become_method: su
+  tasks:
+    - name: Install Python2 and other dependencies for ansible support
+      raw: dnf install -y -d0 -e0 python python-dnf libselinux-python
+
+- name: Setup Fedora hosts
+  hosts: fedora
+  become_user: root
+  become_method: su
+  roles:
+    - { role: common, tags: 'common' }
+    # Install dotfiles for root
+    - { role: dotfiles, tags: 'dotfiles' }
+    # Install dotfiles for usual user
+    - { role: dotfiles, become: yes, become_user: "{{ fedora_user }}", tags: 'dotfiles' }

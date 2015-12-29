@@ -1,14 +1,15 @@
 Plain ansible module making basic environment setup installing common packages and dotfiles and vimplugins.
 
-Currently tested and works only on CentOS 7, using root user.
+Configures: Centos 7, Fedora 23
 
 # Usage
 - Add/edit your host to hosts file or uncomment localhost node.
 - Setup configuration happens via group_vars/targets.yml
 - `ansible-playbook -i hosts site.yml`
-- Add `-k` argument to previous command - password for connection will be asked. This is needed in case if you don't have key authentication with dedicated node.
+- `-k` - SSH connection password will be asked. This is needed in case if you don't have key authentication with dedicated node.
+- `-K` - sudo password will be asked.
 
-##### Packages
+##### Packages for CentOS
 - mlocate
 - wget
 - zip

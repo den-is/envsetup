@@ -1,0 +1,64 @@
+---
+fedora_user: username
+rebootonfinish: yes
+git: no
+gitname: Xxxxxx Yyyyyyyyyyyy
+gitemail: abc@xyz.example
+tmux: no
+vim_complete: no
+vim_solarized: no
+vimplugins:
+  - scrooloose/nerdtree
+  - tpope/vim-fugitive
+  - ctrlpvim/ctrlp.vim
+  - SirVer/ultisnips
+  - honza/vim-snippets
+  - ervandew/supertab
+  - godlygeek/tabular
+  - bling/vim-airline
+packages:
+  - unrar
+  - unzip
+  - p7zip
+  - p7zip-plugins
+  - vim
+  - exfat-utils
+  - fuse-exfat
+  - uuid
+  - tmux
+  - htop
+  - strace
+  - gnome-tweak-tool
+  - nautilus-open-terminal
+  - gtk-murrine-engine
+  - gtk-unico-engine
+  - filezilla
+  - vlc
+  - audacious
+  - audacity
+  - gimp
+  - blender
+  - cairo-dock
+  - guake
+  - wine
+codecs:
+  - gstreamer1
+  - gstreamer1-plugins-base
+  - gstreamer1-plugins-base-tools
+  - gstreamer1-plugins-ugly
+  - gstreamer1-plugins-bad-free
+  - gstreamer1-plugins-bad-freeworld
+  - gstreamer1-plugins-bad-free-extras
+  - gstreamer1-plugins-good
+  - gstreamer1-plugins-good-extras
+  - gstreamer1-libav
+  - gstreamer-ffmpeg
+  - x264
+  - lame-libs
+  - libmpg123
+fonts:
+  - adobe-source-code-pro-fonts
+  - adobe-source-sans-pro-fonts
+  - levien-inconsolata-fonts
+  - google-roboto-mono-fonts
+  - google-droid-sans-mono-fonts

@@ -1,2 +1,10 @@
-[targets]
+# Use -k for SSH connection password or/and -K for sudo password
+# ansible_connection=local - for locakhost connections
+# ansible-playbook -i hosts site.yml -k -K
+
+[centos]
 #localhost ansible_connection=local
+
+[fedora]
+# root user required. also check that sshd server is running on remote host
+192.168.183.134

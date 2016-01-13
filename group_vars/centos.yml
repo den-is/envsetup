@@ -1,8 +1,8 @@
 ---
 rebootonfinish: yes
 git: no
-gitname: Xxxxxx Yyyyyyyyyyyy
-gitemail: abc@xyz.example
+gitname: Xxxx Yyyyyyyyyyyy
+gitemail: abc@example.com
 tmux: no
 vim_complete: no
 vim_solarized: no
@@ -33,6 +33,17 @@ packages:
   - lsof
   - mtr
   - traceroute
+develpkgs:
+  - gcc
+  - gcc-c++
+  - make
+  - cmake
+  - automake
+  - kernel-headers
+  - kernel-devel
+  - python-devel
+  - openssl-devel
+  - zlib-devel
 disabledsvcs:
   - postfix
   - wpa_supplicant

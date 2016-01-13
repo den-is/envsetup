@@ -1,6 +1,6 @@
 Plain ansible module making basic environment setup installing common packages and dotfiles and vimplugins.
 
-Configures: Centos 7, Fedora 23
+Tested on: Centos 7, Fedora 23
 
 # Usage
 - Add/edit your host to hosts file or uncomment localhost node.
@@ -31,7 +31,6 @@ Configures: Centos 7, Fedora 23
 - yum-cron
 - yum-utils
 - gcc
-- cpp
 - gcc-c++
 
 ##### Dotfiles

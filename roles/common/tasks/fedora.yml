@@ -50,7 +50,7 @@
   become: yes
   become_user: "{{ fedora_user }}"
 
-- name: Install Adobe fonts
+- name: Install fonts
   dnf: name={{ item }} state=latest
   with_items: "{{ fonts }}"
 

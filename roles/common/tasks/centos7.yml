@@ -9,7 +9,7 @@
 
 - name: Disable Firewall
   service: name=firewalld state=stopped enabled=no
-  when: ansible_distribution_release != "Core"
+  when: ansible_distribution_version != "7.2.1511"
 
 - name: Disable unwanted services
   service: name={{ item }} state=stopped enabled=no
@@ -33,15 +33,13 @@
     - yum-cron
     - yum-utils
 
+- name: Install devel and header packages
+  yum: name={{ item }} state=latest
+  with_items: "{{ develpkgs }}"
+
 - name: Install common packages
   yum: name={{ item }} state=latest
   with_items: "{{ packages }}"
-
-- name: Install GCC, GCC-C++
-  yum: name={{ item }} state=latest
-  with_items:
-    - gcc
-    - gcc-c++
 
 - name: Update system
   yum: name=* state=latest

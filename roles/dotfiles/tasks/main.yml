@@ -19,3 +19,6 @@
 - name: Custom .tmux.conf
   copy: src=tmuxconf dest=~/.tmux.conf mode=0644
   when: tmux
+
+- debug: msg="You have chosen vim_solarized option. To complete task - uncommnet line 67 in your new .vimrc (colorscheme solarized)"
+  when: vim_solarized and vim_complete

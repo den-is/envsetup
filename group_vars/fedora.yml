@@ -2,8 +2,8 @@
 fedora_user: username
 rebootonfinish: yes
 git: no
-gitname: Xxxxxx Yyyyyyyyyyyy
-gitemail: abc@xyz.example
+gitname: Xxxx Yyyyyyyyyyyy
+gitemail: x.yyyyyyyyyyyy@example.com
 tmux: no
 vim_complete: no
 vim_solarized: no

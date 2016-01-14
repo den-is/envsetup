@@ -2,7 +2,7 @@
 rebootonfinish: yes
 git: no
 gitname: Xxxx Yyyyyyyyyyyy
-gitemail: abc@example.com
+gitemail: x.yyyyyyyyyyyy@example.com
 tmux: no
 vim_complete: no
 vim_solarized: no

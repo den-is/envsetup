@@ -1,37 +1,13 @@
-Plain ansible module making basic environment setup installing common packages and dotfiles and vimplugins.
+Plain ansible module making basic environment setup by installing common packages, dotfiles and vimplugins.
 
 Tested on: Centos 7, Fedora 23
 
 # Usage
 - Add/edit your host to hosts file or uncomment localhost node.
-- Setup configuration happens via group_vars/targets.yml
+- Setup configuration happens via files in group_vars directory; add/remove packages/services there as you need.
 - `ansible-playbook -i hosts site.yml`
 - `-k` - SSH connection password will be asked. This is needed in case if you don't have key authentication with dedicated node.
 - `-K` - sudo password will be asked.
-
-##### Packages for CentOS
-- mlocate
-- wget
-- zip
-- unzip
-- vim-enhanced
-- bash-completion
-- uuid
-- bind-utils
-- net-tools
-- tmux
-- git
-- htop
-- rsync
-- strace
-- lsof
-- mtr
-- traceroute
-- deltarpm
-- yum-cron
-- yum-utils
-- gcc
-- gcc-c++
 
 ##### Dotfiles
 - .gitconfig

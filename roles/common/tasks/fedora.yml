@@ -9,6 +9,10 @@
     name: http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm
     state: present
 
+- name: Install devel packages
+  dnf: name={{ item }} state=latest
+  with_items: "{{ devel }}"
+
 - name: Install common packages
   dnf: name={{ item }} state=latest
   with_items: "{{ packages }}"

@@ -62,3 +62,6 @@ fonts:
   - levien-inconsolata-fonts
   - google-roboto-mono-fonts
   - google-droid-sans-mono-fonts
+devel:
+  - python3-devel
+  - python-devel

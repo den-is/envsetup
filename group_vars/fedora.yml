@@ -24,6 +24,7 @@ packages:
   - vim
   - exfat-utils
   - fuse-exfat
+  - jmtpfs
   - uuid
   - tmux
   - htop

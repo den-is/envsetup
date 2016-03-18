@@ -1,24 +1,49 @@
 ---
-- name: Vimrc
-  template: src=vimrc.j2 dest=~/.vimrc mode=0664
+- block:
+  - name: Check and install Vim
+    package: name=vim state=present
 
-- name: Install Vundle
-  git: repo=https://github.com/VundleVim/Vundle.vim.git
-       dest=~/.vim/bundle/Vundle.vim
-       update=no
-  when: vim_complete
+  - name: Check and install Git in case of vim_complete
+    package: name=git state=present
+    when: vim_complete
 
-- name: Install Vim plugins
-  command: vim +PluginInstall +qall
-  when: vim_complete
+  - name: Vimrc
+    template: src=vimrc.j2 dest=~/.vimrc mode=0664
 
-- name: Git config
-  template: src=gitconfig.j2 dest=~/.gitconfig mode=0664
+  - name: Create ftplugin directory in ~/.vim
+    file: path=~/.vim/ftplugin state=directory
+
+  - name: Copy python.vim in ~/.vim/ftplugin
+    copy: src=python.vim dest=~/.vim/ftplugin/python.vim mode=0664
+    when: vim_complete
+
+  - name: Install Vundle
+    git: repo=https://github.com/VundleVim/Vundle.vim.git
+         dest=~/.vim/bundle/Vundle.vim
+         update=no
+    when: vim_complete
+
+  - name: Install Vim plugins
+    command: vim +PluginInstall +qall
+    when: vim_complete
+
+  - debug: msg="You have chosen vim_solarized option. To complete task - uncommnet line 67 in your new .vimrc (colorscheme solarized)"
+    when: vim_solarized and vim_complete
+
+- block:
+  - name: Check and install Git
+    package: name=git state=present
+
+  - name: Git config
+    template: src=gitconfig.j2 dest=~/.gitconfig mode=0664
+
   when: git
 
-- name: Custom .tmux.conf
-  copy: src=tmuxconf dest=~/.tmux.conf mode=0644
-  when: tmux
+- block:
+  - name: Check and install Tmux
+    package: name=tmux state=present
 
-- debug: msg="You have chosen vim_solarized option. To complete task - uncommnet line 67 in your new .vimrc (colorscheme solarized)"
-  when: vim_solarized and vim_complete
+  - name: Custom .tmux.conf
+    template: src=tmuxconf.j2 dest=~/.tmux.conf mode=0644
+
+  when: tmux

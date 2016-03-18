@@ -59,9 +59,14 @@ unbind r
 bind r source-file ~/.tmux.conf \; display "Reloaded configuration."
 
 # Mouse control configuration (on/off)
+{% if 'fedora' in group_names %}
+set -g mouse-utf8 on
+set -g mouse on
+{% else %}
 #setw -g mode-mouse off
 set -g mouse-select-pane on
 set -g mouse-select-window on
+{% endif %}
 
 # Split panes using | and -
 bind | split-window -h

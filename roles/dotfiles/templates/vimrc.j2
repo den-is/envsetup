@@ -1,4 +1,5 @@
 {% if vim_complete %}
+""" Vundle """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible                " be iMproved, required
 filetype off                    " required
 
@@ -18,9 +19,7 @@ call vundle#end()               " required
 filetype plugin indent on       " required
 {% endif %}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Key mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Key mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set pastetoggle=<F2>            " Toggle auto-indenting for code paste
 let mapleader = ","             " Use ',' (comma char) as leader key, instead of default '\'
 nnoremap <C-J> <C-W><C-J>       " Move between windows with CTRL-h/j/k/l instead of CTRL-o,h/j/k/l
@@ -31,19 +30,7 @@ nnoremap <C-H> <C-W><C-H>
 map <C-n> :NERDTreeToggle<CR>
 {% endif %}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set history=500                 " Sets how many lines of history VIM has to remember
-set timeoutlen=150              " Time to wait after ESC (default causes an annoying delay)
-set autoread                    " Set to auto read when a file is changed from the outside
-" Bash-style tab completion
-set wildmode=longest,list
-set wildmenu
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Code highlight and indentation """""""""""""""""""""""""""""""""""""""""""""
 set tabstop=2                   " Set the default tabstop
 set shiftwidth=2                " Set the default shift width for indents
 set expandtab                   " Make tabs into spaces (set by tabstop)
@@ -52,16 +39,14 @@ set autoindent                  " Auto indent
 
 " Language specific
 let python_highlight_all = 1
-autocmd Filetype python setlocal ts=4 sw=4 expandtab autoindent
+{% if vim_complete %}
+"autocmd Filetype python setlocal tabstops=4 shiftwidth=4 expandtab autoindent
+{% else %}
+autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab autoindent
+{% endif %}
+" or use ~/.vim/ftplugin/LANGUAGE.vim
 
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-set laststatus=2                " Always show the status line
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Colors and Fonts """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 syntax enable                   " Enable syntax highlighting
 {% if vim_solarized %}
@@ -70,37 +55,53 @@ set background=dark
 {% endif %}
 {% if vim_complete %}
 let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1 " Install powerline fonts on system to use this option
 {% endif %}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set so=7                        " Set 7 lines to the cursor - when moving vertically using j/k
-set wildignore=*.o,*~,*.pyc     " Ignore compiled files
-set ruler                       " Always show current position
-"set cursorline
-set hid                         " A buffer becomes hidden when it is abandoned
-
-set splitbelow                  " More natural splitting
-set splitright
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
+""" Search """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set ignorecase                  " Ignore case when searching
 set smartcase                   " When searching try to be smart about cases
 set hlsearch                    " Highlight search results
 set incsearch                   " Makes search act like search in modern browsers
+set wrapscan                    " Search-next wraps back to start of file
 
+""" VIM behaviours """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set fileformat=unix
+set encoding=utf-8
+set history=500                 " Sets how many lines of history VIM has to remember
+set timeoutlen=150              " Time to wait after ESC (default causes an annoying delay)
+set laststatus=2                " Always show the status line
+set scrolloff=5                 " Set 5 lines to the cursor - when moving vertically using j/k
+set hidden                      " A buffer becomes hidden when it is abandoned
+set autoread                    " Set to auto read when a file is changed from the outside
+set ruler                       " Always show current position
+"set cursorline                 " Highlight current line
+set backspace=eol,start,indent  " Configure backspace so it acts as it should act
+set whichwrap+=<,>,h,l,[,]      " Continue next to line when reached beginning/end of current line
+set splitbelow                  " More natural splitting
+set splitright
 set lazyredraw                  " Don't redraw while executing macros (good performance config)
 set magic                       " For regular expressions turn magic on
-
 set showmatch                   " Show matching brackets when text indicator is over them
 set matchtime=5                 " How many tenths of a second to blink when matching brackets
 
-" No annoying sound on errors
+""" Bash-style tab completion """"""""""""""""""""""""""""""""""""""""""""""""""
+set wildmenu
+set wildmode=list:longest,full
+set wildignore=*.o,*~,*.pyc
+
+""" No annoying sound on errors """"""""""""""""""""""""""""""""""""""""""""""""
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
+""" Scripts """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Python with virtualenv support
+python << EOF
+import os
+if 'VIRTUAL_ENV' in os.environ:
+  virtualenv_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(virtualenv_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF

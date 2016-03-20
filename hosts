@@ -7,3 +7,4 @@
 
 [fedora]
 # root user required. also check that sshd server is running on remote host
+#localhost ansible_connection=local

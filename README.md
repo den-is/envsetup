@@ -1,13 +1,33 @@
 Plain ansible module making basic environment setup by installing common packages, dotfiles and vimplugins.
 
-Tested on: Centos 7, Fedora 23
-
 # Usage
+- Tested on: Centos 7, Fedora 23
+- Ansible 2.0+ required
+- `root` account required on remote hosts.
+- `sshd` running service required on remote hosts
+- `sshpass` package required for ssh connections without keys (user/pass)
+
+
 - Add/edit your host to hosts file or uncomment localhost node.
 - Setup configuration happens via files in group_vars directory; add/remove packages/services there as you need.
 - `ansible-playbook -i hosts site.yml`
 - `-k` - SSH connection password will be asked. This is needed in case if you don't have key authentication with dedicated node.
 - `-K` - sudo password will be asked.
+
+**Fedora localhost complete example**
+```bash
+sudo dnf install -y python python-devel python-pip gcc rpm-build
+sudo pip install 'ansible>=2.0'
+git clone https://github.com/den-is/envsetup.git
+cd envsetup
+# uncomment localhost line in [fedora] group in hosts file
+sudo ansible-playbook -i hosts site.yml -K
+```
+**Install or skip certain tags**
+```bash
+ansible-playbook -i hosts site.yml --tags "dotfiles" 
+ansible-playbook -i hosts site.yml --skip-tags "dotfiles"
+```
 
 ##### Dotfiles
 - .gitconfig

@@ -20,12 +20,19 @@ filetype plugin indent on       " required
 {% endif %}
 
 """ Key mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set pastetoggle=<F2>            " Toggle auto-indenting for code paste
-let mapleader = ","             " Use ',' (comma char) as leader key, instead of default '\'
-nnoremap <C-J> <C-W><C-J>       " Move between windows with CTRL-h/j/k/l instead of CTRL-o,h/j/k/l
+set pastetoggle=<F2>                            " Toggle auto-indenting for code paste
+let mapleader = ","                             " Use ',' (comma char) as leader key, instead of default '\'
+nnoremap <C-J> <C-W><C-J>                       " Move between windows with CTRL-h/j/k/l instead of CTRL-o,h/j/k/l
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <Tab> :bnext<CR>                       " Cycle through tabs
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Leader>w :write<CR>                   " Save file with leader
+nnoremap <Leader>q :quit<cr>                    " Quit file with leader
+nnoremap <silent> <Leader>/ :nohlsearch<CR>     " Dismiss search highlightedness
+nnoremap <silent> <Leader>ev :e $MYVIMRC<CR>    " Load vimrc for editing
+nnoremap <silent> <Leader>sv :so $MYVIMRC<CR>   " Load vimrc for editing
 {% if vim_complete %}
 map <C-n> :NERDTreeToggle<CR>
 {% endif %}
@@ -76,6 +83,7 @@ set hidden                      " A buffer becomes hidden when it is abandoned
 set autoread                    " Set to auto read when a file is changed from the outside
 set ruler                       " Always show current position
 "set cursorline                 " Highlight current line
+"set number                     " Show numbers
 set backspace=eol,start,indent  " Configure backspace so it acts as it should act
 set whichwrap+=<,>,h,l,[,]      " Continue next to line when reached beginning/end of current line
 set splitbelow                  " More natural splitting
@@ -88,11 +96,11 @@ set matchtime=5                 " How many tenths of a second to blink when matc
 """ Bash-style tab completion """"""""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*~,*.pyc,*.so,*.zip
 
 """ No annoying sound on errors """"""""""""""""""""""""""""""""""""""""""""""""
 set noerrorbells
-set novisualbell
+set visualbell
 set t_vb=
 set tm=500
 

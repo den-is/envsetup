@@ -7,14 +7,15 @@ tmux: no
 vim_complete: no
 vim_solarized: no
 vimplugins:
+  - vim-airline/vim-airline
+  - vim-airline/vim-airline-themes
+  - ctrlpvim/ctrlp.vim
   - scrooloose/nerdtree
   - tpope/vim-fugitive
-  - ctrlpvim/ctrlp.vim
   - SirVer/ultisnips
   - honza/vim-snippets
   - ervandew/supertab
   - godlygeek/tabular
-  - bling/vim-airline
 packages:
   - mlocate
   - wget

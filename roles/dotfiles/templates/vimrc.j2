@@ -1,5 +1,5 @@
 {% if vim_complete %}
-""" Vundle """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Vundle """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible                " be iMproved, required
 filetype off                    " required
 
@@ -19,7 +19,7 @@ call vundle#end()               " required
 filetype plugin indent on       " required
 {% endif %}
 
-""" Key mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Key mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set pastetoggle=<F2>                            " Toggle auto-indenting for code paste
 let mapleader = ","                             " Use ',' (comma char) as leader key, instead of default '\'
 nnoremap <C-J> <C-W><C-J>                       " Move between windows with CTRL-h/j/k/l instead of CTRL-o,h/j/k/l
@@ -37,7 +37,7 @@ nnoremap <silent> <Leader>sv :so $MYVIMRC<CR>   " Load vimrc for editing
 map <C-n> :NERDTreeToggle<CR>
 {% endif %}
 
-""" Code highlight and indentation """""""""""""""""""""""""""""""""""""""""""""
+""" Code highlight and indentation """""""""""""""""""""""""""""""""""""""""""
 set tabstop=2                   " Set the default tabstop
 set shiftwidth=2                " Set the default shift width for indents
 set expandtab                   " Make tabs into spaces (set by tabstop)
@@ -47,13 +47,13 @@ set autoindent                  " Auto indent
 " Language specific
 let python_highlight_all = 1
 {% if vim_complete %}
-"autocmd Filetype python setlocal tabstops=4 shiftwidth=4 expandtab autoindent
+"autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab autoindent
 {% else %}
 autocmd Filetype python setlocal tabstop=4 shiftwidth=4 expandtab autoindent
 {% endif %}
 " or use ~/.vim/ftplugin/LANGUAGE.vim
 
-""" Colors and Fonts """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Colors and Fonts """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
 syntax enable                   " Enable syntax highlighting
 {% if vim_solarized %}
@@ -65,25 +65,23 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_powerline_fonts = 1 " Install powerline fonts on system to use this option
 {% endif %}
 
-""" Search """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Search """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set ignorecase                  " Ignore case when searching
 set smartcase                   " When searching try to be smart about cases
 set hlsearch                    " Highlight search results
 set incsearch                   " Makes search act like search in modern browsers
 set wrapscan                    " Search-next wraps back to start of file
 
-""" VIM behaviours """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" VIM behaviours """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set fileformat=unix
 set encoding=utf-8
 set history=500                 " Sets how many lines of history VIM has to remember
 set timeoutlen=150              " Time to wait after ESC (default causes an annoying delay)
 set laststatus=2                " Always show the status line
-set scrolloff=5                 " Set 5 lines to the cursor - when moving vertically using j/k
-set hidden                      " A buffer becomes hidden when it is abandoned
+set scrolloff=5                 " Minimal number of screen lines to keep above and below the cursor
+set hidden                      " Allow buffer switching without saving
 set autoread                    " Set to auto read when a file is changed from the outside
 set ruler                       " Always show current position
-"set cursorline                 " Highlight current line
-"set number                     " Show numbers
 set backspace=eol,start,indent  " Configure backspace so it acts as it should act
 set whichwrap+=<,>,h,l,[,]      " Continue next to line when reached beginning/end of current line
 set splitbelow                  " More natural splitting
@@ -92,19 +90,29 @@ set lazyredraw                  " Don't redraw while executing macros (good perf
 set magic                       " For regular expressions turn magic on
 set showmatch                   " Show matching brackets when text indicator is over them
 set matchtime=5                 " How many tenths of a second to blink when matching brackets
+set nojoinspaces                " Use one space, not two, after punctuation.
+set showcmd                     " Show command or size of selected text in Visula mode
+set list listchars=tab:»·,trail:·,nbsp:·    " Show extra whitespaces
+"set cursorline                 " Highlight current line
+"set number                     " Show numbers
 
-""" Bash-style tab completion """"""""""""""""""""""""""""""""""""""""""""""""""
+""" Bash-style tab completion """"""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.o,*~,*.pyc,*.so,*.zip
 
-""" No annoying sound on errors """"""""""""""""""""""""""""""""""""""""""""""""
+""" Backup ( WARNING: Potentialy dangerous )""""""""""""""""""""""""""""""""""
+"set nobackup                    " Do not make a backup before overwriting a file, which stays around
+"set nowritebackup               " Do not make a backup before overwriting a file, which is deleted after successful operation
+"set noswapfile                  " Don't create swapfile. Whole data will be in memory
+
+""" No annoying sound on errors """"""""""""""""""""""""""""""""""""""""""""""
 set noerrorbells
 set visualbell
 set t_vb=
 set tm=500
 
-""" Scripts """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Scripts """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python with virtualenv support
 python << EOF
 import os

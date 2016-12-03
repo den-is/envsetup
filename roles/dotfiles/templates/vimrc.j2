@@ -1,3 +1,6 @@
+" First set leader key
+let mapleader = ","                             " Use ',' (comma char) as leader key, instead of default '\'
+
 {% if vim_complete %}
 """ Vundle """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible                " be iMproved, required
@@ -21,7 +24,6 @@ filetype plugin indent on       " required
 
 """ Key mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set pastetoggle=<F2>                            " Toggle auto-indenting for code paste
-let mapleader = ","                             " Use ',' (comma char) as leader key, instead of default '\'
 nnoremap <C-J> <C-W><C-J>                       " Move between windows with CTRL-h/j/k/l instead of CTRL-o,h/j/k/l
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>

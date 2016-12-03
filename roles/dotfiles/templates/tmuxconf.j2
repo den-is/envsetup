@@ -16,8 +16,10 @@ setw -g mode-keys vi
 setw -g xterm-keys on
 
 set -g default-terminal "screen-256color"
+{% if 'fedora' not in group_names %}
 set -g utf8
 set-window-option -g utf8 on
+{% endif %}
 
 # Status bar styling and content.
 set -g status-utf8 on
@@ -60,7 +62,6 @@ bind r source-file ~/.tmux.conf \; display "Reloaded configuration."
 
 # Mouse control configuration (on/off)
 {% if 'fedora' in group_names %}
-set -g mouse-utf8 on
 set -g mouse on
 {% else %}
 #setw -g mode-mouse off

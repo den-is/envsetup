@@ -1,5 +1,9 @@
 Requires next variables:
 
+**Dotfiles** role doesn't require you to have corresponding applications to be installed.
+
+Except the case when `vim_complete` equals `yes`, git should be preinstalled.
+
 | Variable | Values | Description |
 | --- | --- | --- |
 | **git** | *yes/no* | Install Git and place configuration files |

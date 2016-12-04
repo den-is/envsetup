@@ -1,12 +1,5 @@
 ---
 - block:
-  - name: Check and install Vim
-    package: name=vim state=present
-
-  - name: Check and install Git in case of vim_complete
-    package: name=git state=present
-    when: vim_complete
-
   - name: Vimrc
     template: src=vimrc.j2 dest=~/.vimrc mode=0664
 
@@ -31,9 +24,6 @@
     when: vim_solarized and vim_complete
 
 - block:
-  - name: Check and install Git
-    package: name=git state=present
-
   - name: Git config
     template: src=gitconfig.j2 dest=~/.gitconfig mode=0664
 
@@ -43,9 +33,6 @@
   when: git
 
 - block:
-  - name: Check and install Tmux
-    package: name=tmux state=present
-
   - name: Custom .tmux.conf
     template: src=tmuxconf.j2 dest=~/.tmux.conf mode=0644
 

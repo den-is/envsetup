@@ -27,7 +27,7 @@
     command: vim +PluginInstall +qall
     when: vim_complete
 
-  - debug: msg="You have chosen vim_solarized option. To complete task - uncommnet line 67 in your new .vimrc (colorscheme solarized)"
+  - debug: msg="You have chosen vim_solarized option. To complete task - uncommnet 'colorscheme solarized' in your new .vimrc"
     when: vim_solarized and vim_complete
 
 - block:
@@ -36,6 +36,9 @@
 
   - name: Git config
     template: src=gitconfig.j2 dest=~/.gitconfig mode=0664
+
+  - name: Global .gitignore
+    copy: src=gitignore dest=~/.gitignore mode=0664
 
   when: git
 
